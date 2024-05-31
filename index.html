@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Group Assignment</h1>
+        <div class="form-group">
+            <label for="name">First Name and Last Initial:</label>
+            <input type="text" id="name" placeholder="e.g., John D">
+        </div>
+        <button class="btn" onclick="assignGroup()">Assign Group</button>
+        
+        <table id="summaryTable">
+            <thead>
+                <tr>
+                    <th>Group A</th>
+                    <th>Group B</th>
+                    <th>Group C</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="groupA"></td>
+                    <td id="groupB"></td>
+                    <td id="groupC"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const groups = {
+            A: [],
+            B: [],
+            C: []
+        };
+
+        function assignGroup() {
+            const name = document.getElementById('name').value.trim();
+            if (name === "") {
+                alert("Please enter a valid name.");
+                return;
+            }
+
+            const groupKeys = Object.keys(groups);
+            const group = groupKeys[Math.floor(Math.random() * groupKeys.length)];
+            groups[group].push(name);
+
+            updateTable();
+        }
+
+        function updateTable() {
+            document.getElementById('groupA').innerText = groups.A.join(", ");
+            document.getElementById('groupB').innerText = groups.B.join(", ");
+            document.getElementById('groupC').innerText = groups.C.join(", ");
+        }
+    </script>
+</body>
+</html>
